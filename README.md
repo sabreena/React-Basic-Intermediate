@@ -1,18 +1,7 @@
-# Description
+# Basic Components Section
 
-This repository contains exercises on React, covering both basic and intermediate concepts.
+## Topics covered
 
-# Installation Instructions
-
-Install dependencies:
-
-`npm install`
-
-Run the project:
-
-`npm run dev`
-
-# Project Structure
-
-The `main` branch contains the project scaffold.
-For each exercise, a separate branch is created based on the course section.
+1. Creating components - Class and Functional components
+2. Using Props with components
+3. Importing Non-JS files
