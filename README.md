@@ -1,16 +1,8 @@
-# Title
-
-React Basic and Intermediate
-
 # Description
 
 This repository contains exercises on React, covering both basic and intermediate concepts.
 
 # Installation Instructions
-
-Set up the React project with Vite:
-
-`npm create vite@latest`
 
 Install dependencies:
 
