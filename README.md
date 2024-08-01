@@ -1,18 +1,8 @@
-# Description
+# Basic Stateful Components
 
-This repository contains exercises on React, covering both basic and intermediate concepts.
+## Topics covered
 
-# Installation Instructions
-
-Install dependencies:
-
-`npm install`
-
-Run the project:
-
-`npm run dev`
-
-# Project Structure
-
-The `main` branch contains the project scaffold.
-For each exercise, a separate branch is created based on the course section.
+1. useState Hook
+2. State in Class Components
+3. Input Event Listeners
+4. Array Concepts
