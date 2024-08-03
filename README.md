@@ -2,4 +2,4 @@
 
 ## Topics covered
 
-1. useEffect Hook in Functional Component
+1. Class component lifecycle methods

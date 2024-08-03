@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Child } from "./Child";
+import { ChildClass } from "./ChildClass";
 
 export default function App() {
   const [show, setShow] = useState(true);
 
-  const childComponent = show ? <Child /> : null;
+  const childComponentClass = show ? <ChildClass /> : null;
 
   return (
     <div>
@@ -13,7 +13,7 @@ export default function App() {
           Show/Hide
         </button>
       </p>
-      {childComponent}
+      {childComponentClass}
     </div>
   );
 }
