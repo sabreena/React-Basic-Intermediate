@@ -1,5 +1,10 @@
+// import { StateForm } from "./StateForm"
+import { RefForm } from "./RefForm"
+import "./styles.css"
+
 function App() {
-  return "Hello React!";
+  // return <StateForm />
+  return <RefForm />
 }
 
 export default App;
