@@ -8,6 +8,9 @@ Install dependencies:
 
 `npm install`
 
+`npm install react-hook-form`
+`npm install react-select`
+
 Run the project:
 
 `npm run dev`
