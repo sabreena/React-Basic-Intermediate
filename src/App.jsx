@@ -1,5 +1,7 @@
+import { Counter } from "./Counter";
+
 function App() {
-  return "Hello React!";
+  return <Counter />;
 }
 
 export default App;
