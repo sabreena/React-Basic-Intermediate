@@ -1,9 +1,10 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Team } from "./pages/Team";
 import { TeamMember } from "./pages/TeamMember";
+import { NewTeamMember } from "./pages/NewTeamMember";
 import { Navbar } from "./Navbar";
 import { TeamNav } from "./TeamNav";
 import "./styles.css";
@@ -15,6 +16,8 @@ export const router = createBrowserRouter(
       element: <NavLayout />,
       errorElement: <h1>Error</h1>,
       children: [
+       // { path: "*", element: <h1>404</h1> },
+        { path: "*", element: <Navigate to="/" /> },
         { path: "/", element: <Home /> },
         { path: "/about", element: <About /> },
         { path: "/store", element: <Store /> },
@@ -23,8 +26,8 @@ export const router = createBrowserRouter(
           element: <TeamNavLayout />,
           children: [
             { index: true, element: <Team /> },
-            { path: "joe", element: <TeamMember name="joe" /> },
-            { path: "sally", element: <TeamMember name="sally" /> },
+            { path: ":memberId", element: <TeamMember /> },
+            { path: "new", element: <NewTeamMember /> },
           ],
         },
       ],
@@ -48,7 +51,7 @@ function TeamNavLayout() {
   return (
     <>
       <TeamNav />
-      <Outlet context="Hi from outlet"/>
+      <Outlet/>
     </>
   )
 }

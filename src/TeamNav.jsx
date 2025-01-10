@@ -1,23 +1,18 @@
 import { Link } from "react-router-dom";
+import teamMembers from "./teamMembers.json"
 
 export function TeamNav() {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="joe">Team - joe</Link>
-        </li>
-        <li>
-          <Link to="sally">Team - Sally</Link>
-        </li>
-        <li>
-          <Link to="..">..Route</Link> {/* Navigates to root */}
-        </li>
-        <li>
-          <Link to=".." relative="path"> {/* Navigates to /team */}
-            ..Path
-          </Link>
-        </li>
+        {teamMembers.map((member) => (
+          <li key={member.id}>
+            <Link to={member.id}>{member.name}</Link>
+          </li>
+        ))}
+         <li>
+            <Link to="new">New Member</Link>
+          </li>
       </ul>
     </nav>
   )

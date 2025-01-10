@@ -1,23 +1,14 @@
-import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import teamMembers from "../teamMembers.json";
 
-export function TeamMember( { name }) {
+export function TeamMember() {
+  const { memberId }  = useParams();
+  console.log(memberId);
+  const member = teamMembers.find((m) => m.id === memberId);  
   return (
-    <>
-      <div>
-        <h1>Team Member - { name }</h1>
-          <ul>
-            <li>
-              <Link to=".." relative="path">
-                ..Relative to Path - { name }
-              </Link>
-          </li>
-          <li>
-            <Link to="..">
-              ..Relative to Route - { name }
-            </Link>
-          </li>
-          </ul>
-      </div>
-    </>
-  )
+    <div>
+      <h2>Team Member - {member?.name}</h2>
+      <p>{member?.role}</p>
+    </div>
+  );
 }

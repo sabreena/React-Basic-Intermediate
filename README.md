@@ -16,4 +16,4 @@ Run the project:
 
 # Task
 
-Nested Routes
+Dynamic Routes
