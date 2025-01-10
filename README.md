@@ -12,7 +12,8 @@ Run the project:
 
 `npm run dev`
 
-# Project Structure
+`npm i react-router-dom`
 
-The `main` branch contains the project scaffold.
-For each exercise, a separate branch is created based on the course section.
+# Task
+
+React Router Basics using react-router-dom
