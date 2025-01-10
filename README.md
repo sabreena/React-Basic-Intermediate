@@ -16,4 +16,4 @@ Run the project:
 
 # Task
 
-Dynamic Routes
+Loaders
