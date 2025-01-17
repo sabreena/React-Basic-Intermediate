@@ -1,58 +1,43 @@
-import { createBrowserRouter, Navigate, useRouteError } from "react-router-dom"
-import { RootLayout } from "./layouts/RootLayout"
-import { postRoute } from "./pages/Post"
-import { postListRoute } from "./pages/PostList"
-import { todoListRoute } from "./pages/TodoList"
-import { userRoute } from "./pages/User"
-import { userListRoute } from "./pages/UserList"
+import { createBrowserRouter, redirect } from "react-router-dom"
+import { TodoList } from "./pages/TodoList"
+import { NewTodo } from "./pages/NewTodo"
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      {
-        // For handling error coming through axios
-        errorElement: <ErrorPage />,
-        children: [
-          // On the index page, navigate to Posts page
-          { index: true, element: <Navigate to="/posts" /> },
-          {
-            path: "posts",
-            children: [
-              { index: true, ...postListRoute },
-              { path: ":postId", ...postRoute },
-              /* { index: true, element: <PostList /> },
-              { path: ":postId", element: <h1>Hi</h1>} */
-            ],
-          },
-          {
-            path: "users",
-            children: [
-              { index: true, ...userListRoute },
-              { path: ":userId", ...userRoute },
-            ],
-          },
-          { path: "todos", ...todoListRoute },
-          { path: "*", element: <h1>404 - Page Not Found</h1> },
-        ],
-      },
-    ],
+    index: true, 
+    element: <TodoList />,
+    loader: async ({ request: { signal, url }}) => {
+      const searchParams = new URL(url).searchParams
+      const query = searchParams.get("query") || ""
+      return {
+        searchParams: { query },
+        todos: await fetch(`http://localhost:3000/todos?q=${query}`, 
+        { signal, }).then(res => res.json())
+      }
+    }
   },
+  { 
+    path: "/new",
+    element: <NewTodo />,
+    action: async ( { request })=> { 
+      const formData = await request.formData()
+      const title = formData.get("title")
+
+      if (title === "") {
+        return "Title is required"
+      }
+
+      const todo = await fetch("http://localhost:3000/todos", {
+        method: "POST",
+        signal: request.signal,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, completed: false })
+      }).then(res => res.json())
+      console.log(todo);
+
+      return redirect("/");
+    }
+  }
 ])
-
-function ErrorPage() {
-  const error = useRouteError()
-
-  return (
-    <>
-      <h1>Error - Something went wrong</h1>
-      {import.meta.env.MODE !== "production" && (
-        <>
-          <pre>{error.message}</pre>
-          <pre>{error.stack}</pre>
-        </>
-      )}
-    </>
-  )
-}
