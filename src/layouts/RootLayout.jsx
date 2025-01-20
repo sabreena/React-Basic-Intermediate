@@ -6,9 +6,7 @@ import {
 } from "react-router-dom"
 
 export function RootLayout() {
-  // useNavigation() hook gives information of our state.
   const { state } = useNavigation()
-  console.log(state)
   const isLoading = state === "loading"
 
   return (
@@ -27,7 +25,6 @@ export function RootLayout() {
           </li>
         </ul>
       </nav>
-      {/* It controls the behavior of the scroll position when navigating between pages in the browser. */}
       <ScrollRestoration />
       {isLoading && <div className="loading-spinner" />}
       <div className={`container ${isLoading ? "loading" : ""}`}>

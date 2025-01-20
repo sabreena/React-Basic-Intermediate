@@ -10,7 +10,6 @@ function TodoList() {
       <h1 className="page-title">Todos</h1>
       <ul>
         {todos.map(todo => (
-          // spread out all todo properties
           <TodoItem key={todo.id} {...todo} />
         ))}
       </ul>

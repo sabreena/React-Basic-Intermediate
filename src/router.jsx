@@ -1,5 +1,7 @@
 import { createBrowserRouter, Navigate, useRouteError } from "react-router-dom"
 import { RootLayout } from "./layouts/RootLayout"
+import { editPostRoute } from "./pages/EditPost"
+import { newPostRoute } from "./pages/NewPost"
 import { postRoute } from "./pages/Post"
 import { postListRoute } from "./pages/PostList"
 import { todoListRoute } from "./pages/TodoList"
@@ -12,18 +14,24 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       {
-        // For handling error coming through axios
         errorElement: <ErrorPage />,
         children: [
-          // On the index page, navigate to Posts page
           { index: true, element: <Navigate to="/posts" /> },
           {
             path: "posts",
             children: [
-              { index: true, ...postListRoute },
-              { path: ":postId", ...postRoute },
-              /* { index: true, element: <PostList /> },
-              { path: ":postId", element: <h1>Hi</h1>} */
+              {
+                index: true,
+                ...postListRoute,
+              },
+              {
+                path: ":postId",
+                children: [
+                  { index: true, ...postRoute },
+                  { path: "edit", ...editPostRoute },
+                ],
+              },
+              { path: "new", ...newPostRoute }, // New Post
             ],
           },
           {
